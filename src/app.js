@@ -1,9 +1,16 @@
 class App {
 
   addListToPage (list) {
+    return list.map(item => {
+      return new Item(item)
+    // mainList.innerHTML += newItem.renderListItem();
+    })
+  }
+
+  renderItems (list) {
     list.forEach(item => {
-      const newItem = new Item(item)
-      mainList.innerHTML += newItem.renderListItem()
+      // const newItem = new Item(item);
+      mainList.innerHTML += item.renderListItem()
     })
   }
 
@@ -23,8 +30,10 @@ class App {
       document.querySelector(`#category-${category.id}`).addEventListener('click', event => {
         mainList.innerHTML = ''
         let filter = Item.all
-        let filteredItems = filter.filter(item => item.category.id === category.id)
-        this.addListToPage(filteredItems)
+        let filteredItems = ''
+        filteredItems = (filter.filter(item => item.category.id === category.id))
+        this.renderItems(filteredItems)
+        console.log(filteredItems)
       })
     })
   }
