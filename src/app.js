@@ -72,6 +72,14 @@ class App {
     })
   }
 
+  refreshButton (list) {
+    const refreshButton = document.querySelector('#refresh-button')
+    refreshButton.addEventListener('click', (event) => {
+      mainList.innerHTML = ''
+      this.renderItems(list)
+    })
+  }
+
 }
 
 $(document).foundation()
