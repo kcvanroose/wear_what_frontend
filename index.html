@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+  </head>
+  <body>
+    <div class="row">
+      <div class="small-12">
+        <nav class="top-bar">
+            <div class="top-bar-left">
+              <ul class="menu">
+                <li class="menu-text title"><h1>What Wear?</h1></li>
+              </ul>
+            </div>
+            <div class="top-bar-right">
+              <ul class="dropdown menu" data-dropdown-menu>
+                <li>
+                  <a>Category</a>
+                  <ul id="categoryMenu" class="menu">
+
+                  </ul>
+                </li>
+                <li><a>Color</a></li>
+                <li><a>Brand</a></li>
+              </ul>
+            </div>
+        </nav>
+      </div>
+    </div>
+    <div class="row">
+      <hr class="title-under">
+    </div>
+    <div class="row">
+      <button class="button" data-open="new-item">Add a new item</button>
+    </div>
+    <div class="row">
+      <div class="small-12 large-10 columns">
+        <div id="notes-list">
+        </div>
+      </div>
+      <div class="small-12 large-2 outfit-panel columns">
+        <h4>New Outfit</h4>
+      </div>
+    </div>
+
+    <form id="new-item" action="submit" method="post" class="reveal" data-reveal>
+      <div class="form-example">
+        <label for="color">Color: </label>
+        <input type="text" name="color">
+      </div>
+      <div class="form-example">
+        <label for="brams">Brand: </label>
+        <input type="text" name="brand">
+      </div>
+      <div class="form-example">
+        <label for="image">Upload image: </label>
+        <input type="file" name="image">
+      </div>
+      <div class="form-example">
+        <label for="category">Choose a category: </label>
+        <select name="category" id="category-select">
+
+        </select>
+      </div>
+
+      <div class="form-example">
+        <input type="submit" value="Submit!">
+      </div>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </form>
+
+  </body>
+
+
+
+
+
+
+
+
+
+
+  <script src="src/index.js" charset="utf-8"></script>
+  <script src="src/item.js" charset="utf-8"></script>
+  <script src="src/vendor/jquery.js"></script>
+  <script src="src/vendor/what-input.js"></script>
+  <script src="src/vendor/foundation.js"></script>
+  <script src="src/app.js"></script>
+</html>

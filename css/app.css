@@ -1,0 +1,39 @@
+.top-bar {
+  background-color: transparent;
+}
+
+.top-bar ul {
+  background-color: transparent;
+}
+
+ul {
+  list-style: none;
+}
+
+.image {
+  object-fit: cover;
+  height: 200px;
+  width: 200px;
+  border-radius: 10px;
+}
+
+.outfit-panel {
+  border-left: black solid 1px
+}
+
+h1,
+h4 {
+  font-family: 'Abril Fatface', cursive;
+  text-decoration: underline;
+}
+
+
+.title-under {
+  border-top: 1px solid #ccc
+}
+
+.button {
+  color: black;
+  font-weight: bold;
+  border-radius: 10px;
+}
