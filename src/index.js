@@ -24,7 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log(json);
       const app = new App();
 
-      app.addListToPage(json.items)
+      let items = app.addListToPage(json.items)
+      app.renderItems(items)
       app.addCategory(categorySelect)
       app.addNewItemListener(newItemForm)
       app.addCategoryMenu(categoryMenu, getAvailableCategoriesFromItems(Item.all))
