@@ -16,8 +16,8 @@ class App {
 
   addCategory(categorySelect) {
     let listItem = "<option value=''>--Please choose an option--</option>"
-    Item.all.forEach(item => {
-      listItem += `<option value="${item.category.id}">${item.category.name}</option>`
+    getAvailableCategoriesFromItems(Item.all).forEach(item => {
+      listItem += `<option value="${item.name}">${item.name}</option>`
     })
     categorySelect.innerHTML = listItem
   }
@@ -62,19 +62,56 @@ class App {
 
     addColorMenu(theId, colors) {
       colors.forEach(color => {
-        theId.innerHTML += `<li id="color${item.color}"><a>${item.color}</a></li>`
+        theId.innerHTML += `<li id="color-${color.replace(' ', '')}"><a>${color}</a></li>`
       })
+
       colors.forEach(color => {
-        document.querySelector(`#color-${item.id}`).addEventListener('click', event => {
+        let colorMenuItem = document.querySelector(`#color-${color.replace(' ', '')}`)
+        colorMenuItem.addEventListener('click', (event) => {
           mainList.innerHTML = ""
           let filter = Item.all
-          let filteredItems = filter.filter(color => color.id === item.id)
-          this.addListToPage(filteredItems)
+          let uniqueColor = color
+          let filteredItems = filter.filter(color => color.color === uniqueColor)
+
+          this.renderItems(filteredItems)
         })
       })
     }
 
+    addBrandMenu(theId, brands) {
+      brands.forEach(brand => {
+        theId.innerHTML += `<li id="brand-${brand.replace(/\s+/g, '')}"><a>${brand}</a></li>`
+      })
 
+      brands.forEach(brand => {
+        let brandMenuItem = document.querySelector(`#brand-${brand.replace(/\s+/g, '')}`)
+
+        brandMenuItem.addEventListener('click', (event) => {
+          mainList.innerHTML = ""
+          let filter = Item.all
+          let uniqueBrand = brand
+          let filteredItems = filter.filter(color => color.brand === uniqueBrand)
+
+          this.renderItems(filteredItems)
+        })
+      })
+    }
+
+    addOutfitsMenu(theId, outfits) {
+      outfits.forEach(outfit => {
+        theId.innerHTML += `<li id="outfit-${outfit.id}"><a>${outfit.occasion}</a></li>`
+      })
+      outfits.forEach(outfit => {
+        document.querySelector(`#outfit-${outfit.id}`).addEventListener('click', event => {
+          mainList.innerHTML = ""
+          let idsOfItemsThatAreInThisOutfit = outfit.items.map(item => item.id)
+          let filteredItems = Item.all.filter(item => idsOfItemsThatAreInThisOutfit.includes(item.id))
+          this.renderItems(filteredItems)
+          console.log(filteredItems)
+
+        })
+      })
+    }
 
 
 

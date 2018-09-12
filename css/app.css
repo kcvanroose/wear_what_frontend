@@ -1,3 +1,7 @@
+body {
+  font-family: 'Anonymous Pro', monospace;
+}
+
 .top-bar {
   background-color: transparent;
 }
