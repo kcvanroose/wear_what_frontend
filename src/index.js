@@ -3,10 +3,14 @@ const outfitSelect = document.querySelector('#oufit-select')
 const newItemForm = document.querySelector('#new-item')
 let user
 const categoryMenu = document.querySelector('#categoryMenu')
+<<<<<<< HEAD
 const mainList =   document.querySelector('#notes-list')
 const colorMenu =  document.querySelector('#colorMenu')
 const brandMenu = document.querySelector('#brandMenu')
 const outfitsMenu = document.querySelector('#outfitsMenu')
+=======
+const mainList = document.querySelector('#notes-list')
+>>>>>>> 564f921a67eb2a60ee5feba12bf447c9767c84a8
 
 function getAvailableCategoriesFromItems (items) {
   const categories = items.map(item => item.category)
@@ -47,23 +51,28 @@ function getAvailableColorsFromItems (items) {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-
-  const endPoint = 'http://localhost:3000/users/1/';
+  const endPoint = 'http://localhost:3000/users/1/'
   fetch(endPoint)
     .then(res => res.json())
     .then(json => {
       user = json
-      console.log(json);
-      const app = new App();
+      console.log(json)
+      const app = new App()
 
       let items = app.addListToPage(json.items)
       app.renderItems(items)
       app.addCategory(categorySelect)
       app.addNewItemListener(newItemForm)
       app.addCategoryMenu(categoryMenu, getAvailableCategoriesFromItems(Item.all))
+<<<<<<< HEAD
       app.addColorMenu(colorMenu, getAvailableColorsFromItems(Item.all))
       app.addBrandMenu(brandMenu, getAvailableBrandsFromItems(Item.all))
       app.addOutfitsMenu(outfitsMenu, user.outfits)
     });
+=======
+      app.refreshButton(Item.all)
+>>>>>>> 564f921a67eb2a60ee5feba12bf447c9767c84a8
 
-});
+      // app.addColorMenu(colorMenu, getAvailableCategoriesFromItems(Item.all))
+    })
+})
