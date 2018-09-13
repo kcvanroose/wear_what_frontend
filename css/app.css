@@ -7,12 +7,24 @@ body {
 }
 
 .top-bar ul {
-  background-color: transparent;
+  background-color: white;
 }
 
 ul {
   list-style: none;
 }
+
+.is-dropdown-submenu {
+  position: absolute;
+    top: 0;
+    left: 100%;
+    z-index: 1;
+    display: none;
+    min-width: 200px;
+    border: 1px solid black;
+    background-color: black;
+}
+
 
 .image {
   object-fit: cover;

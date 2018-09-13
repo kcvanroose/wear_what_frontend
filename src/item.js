@@ -11,8 +11,7 @@ class Item {
 
   renderListItem() {
     return `
-
-      <img class="image" src="http://localhost:3000${this.image.url}">
+      <img id="item-${this.id}" class="image" src="${this.image}">
   `;
   }
 }

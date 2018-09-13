@@ -39,33 +39,49 @@ class App {
   }
 
   addNewItemListener (form) {
+
+    function encodeImageFileAsURL(element) {
+      var file = element.files[0];
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      return new Promise(resolve => {
+        reader.onloadend = function() {
+          console.log('RESULT', reader.result)
+          resolve(reader.result)
+        }
+      })
+    }
+
     form.addEventListener('submit', event => {
       event.preventDefault()
-      Item.postNewItem({
-        user_id: user.id,
-        color: form.elements.color.value,
-        brand: form.elements.brand.value,
-        image: form.elements.image.value,
-        category_id: form.elements.category.value
-      })
-      .then(res =>
-        // hide the form,
-        // show the new item
-        res.json())
-      .then(json => {
-        console.log(json)
-      })
+      encodeImageFileAsURL(form.elements.image)
+        .then(imgData => {
+          Item.postNewItem({
+            user_id: user.id,
+            color: form.elements.color.value,
+            brand: form.elements.brand.value,
+            image: imgData,
+            category_id: form.elements.category.value
+          })
+          .then(res =>
+            // hide the form,
+            // show the new item
+            res.json())
+          .then(json => {
+            console.log(json)
+          })
+        })
     })
   }
 
 
     addColorMenu(theId, colors) {
       colors.forEach(color => {
-        theId.innerHTML += `<li id="color-${color.replace(' ', '')}"><a>${color}</a></li>`
+        theId.innerHTML += `<li id="color-${color.replace(/\s+/g, '')}"><a>${color}</a></li>`
       })
 
       colors.forEach(color => {
-        let colorMenuItem = document.querySelector(`#color-${color.replace(' ', '')}`)
+        let colorMenuItem = document.querySelector(`#color-${color.replace(/\s+/g, '')}`)
         colorMenuItem.addEventListener('click', (event) => {
           mainList.innerHTML = ""
           let filter = Item.all
@@ -120,6 +136,28 @@ class App {
       this.renderItems(list)
     })
   }
+
+  selectItem () {
+    mainList.addEventListener('click', (event) =>{
+      let item = this.getOutfit(event.target.id)
+
+      let html = this.appendItemToOutfit(item)
+
+      this.newOutfitList.innerHTML
+    })
+  }
+
+  getOutfit(itemid) {
+    return Item.all.find(item => `item-${item.id}` === itemid)
+  }
+
+  appendItemToOutfit(item) {
+    return `
+    <img id="item-${item.id}" class="image" src="http://localhost:3000${item.image.url}">
+    `
+  }
+
+
 
 }
 
