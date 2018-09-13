@@ -112,21 +112,6 @@ class App {
       })
     }
 
-  addColorMenu (theId, colors) {
-    colors.forEach(color => {
-      theId.innerHTML += `<li id="color-${color}"><a>${color}</a></li>`
-    
-    })
-    colors.forEach(color => {
-
-      document.querySelector(`#color-${color}`).addEventListener('click', event => {
-        mainList.innerHTML = ''
-        let filter = Item.all
-        let filteredItems = filter.filter(color => color.color === color)
-        this.addListToPage(filteredItems)
-      })
-    })
-  }
 
   refreshButton (list) {
     const refreshButton = document.querySelector('#refresh-button')
