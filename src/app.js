@@ -58,7 +58,7 @@ class App {
     })
   }
 
-<<<<<<< HEAD
+
     addColorMenu(theId, colors) {
       colors.forEach(color => {
         theId.innerHTML += `<li id="color-${color.replace(' ', '')}"><a>${color}</a></li>`
@@ -112,27 +112,21 @@ class App {
       })
     }
 
-
-
-
-
-
-
-=======
   addColorMenu (theId, colors) {
     colors.forEach(color => {
-      theId.innerHTML += `<li id="color${item.color}"><a>${item.color}</a></li>`
+      theId.innerHTML += `<li id="color-${color}"><a>${color}</a></li>`
+    
     })
     colors.forEach(color => {
-      document.querySelector(`#color-${item.id}`).addEventListener('click', event => {
+
+      document.querySelector(`#color-${color}`).addEventListener('click', event => {
         mainList.innerHTML = ''
         let filter = Item.all
-        let filteredItems = filter.filter(color => color.id === item.id)
+        let filteredItems = filter.filter(color => color.color === color)
         this.addListToPage(filteredItems)
       })
     })
   }
->>>>>>> 564f921a67eb2a60ee5feba12bf447c9767c84a8
 
   refreshButton (list) {
     const refreshButton = document.querySelector('#refresh-button')
