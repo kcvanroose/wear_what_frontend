@@ -7,6 +7,11 @@ class App {
     })
   }
 
+  addSingleItemToPage (itemObj) {
+      let item = new Item(itemObj)
+      mainList.innerHTML += item.renderListItem()
+  }
+
   renderItems (list) {
     list.forEach(item => {
       // const newItem = new Item(item);
@@ -39,19 +44,17 @@ class App {
   }
 
   addNewItemListener (form) {
-
     function encodeImageFileAsURL(element) {
       var file = element.files[0];
       var reader = new FileReader();
       reader.readAsDataURL(file);
       return new Promise(resolve => {
         reader.onloadend = function() {
-          console.log('RESULT', reader.result)
+          // console.log('RESULT', reader.result)
           resolve(reader.result)
         }
       })
     }
-
     form.addEventListener('submit', event => {
       event.preventDefault()
       encodeImageFileAsURL(form.elements.image)
@@ -66,9 +69,15 @@ class App {
           .then(res =>
             // hide the form,
             // show the new item
+
             res.json())
           .then(json => {
             console.log(json)
+            $(form).foundation('close');
+
+            this.addSingleItemToPage(json);
+
+
           })
         })
     })
@@ -137,13 +146,25 @@ class App {
     })
   }
 
-  selectItem () {
+
+  selectItem (itemIds) {
     mainList.addEventListener('click', (event) =>{
       let item = this.getOutfit(event.target.id)
 
+      itemIds.push(item.id)
       let html = this.appendItemToOutfit(item)
 
-      this.newOutfitList.innerHTML
+      newOutfitList.innerHTML += html
+      // if newO
+      //newOutfitList.remove('button')
+      if (newOutfitList.innerHTML.includes('addButton')) {
+
+      } else {
+      newOutfitList.prepend(this.appendNewButton())
+      // newOutfitList.insertAdjacentHTML('beforeend', this.appendNewButton())
+      }
+    console.log(itemIds)
+    return itemIds
     })
   }
 
@@ -152,10 +173,63 @@ class App {
   }
 
   appendItemToOutfit(item) {
-    return `
-    <img id="item-${item.id}" class="image" src="http://localhost:3000${item.image.url}">
-    `
+    return `<img id="item-${item.id}" class="image" src="${item.image}">`
   }
+
+  appendNewButton () {
+    const form = document.createElement('form')
+    form.setAttribute('method', "post")
+    form.setAttribute('action', "submit")
+    form.setAttribute('id', "occasionForm")
+
+    const label = document.createElement('label')
+    label.setAttribute('for', "input")
+    label.innerText = 'Name of occasion:'
+
+    form.appendChild(label)
+
+    const input = document.createElement('input')
+    input.setAttribute('type',"text")
+    input.setAttribute('name',"occasion");
+
+
+    form.appendChild(input)
+
+    const button = document.createElement('button')
+    button.className = 'button addButton'
+    button.innerText = 'Save outfit'
+
+    form.appendChild(button)
+
+    form.addEventListener('submit', event => {
+      event.preventDefault()
+      this.submitOutfit({
+        user_id: user.id,
+        occasion: form.elements.occasion.value,
+        items: itemIds
+      })
+      newOutfitList.innerHTML = ""
+      itemIds.length = 0;
+    })
+    return form
+  }
+
+  submitOutfit(itemData) {
+    return fetch('http://localhost:3000/outfits', {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(itemData)
+    })
+    console.log(itemData)
+  }
+
+  clearOutfitList(button) {
+    button.addEventListener('click', () => {
+      newOutfitList.innerHTML = ""
+      itemIds.length = 0;
+    })
+  }
+
 
 
 

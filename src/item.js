@@ -22,6 +22,7 @@ Item.postNewItem = function (itemData) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(itemData)
   })
+  
   console.log(itemData)
 }
 

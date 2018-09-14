@@ -5,7 +5,7 @@
     <title></title>
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/app.css">
-    <script src="./src/vendor/dropzone.js"></script>
+
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro" rel="stylesheet">
   </head>
@@ -53,18 +53,23 @@
       <hr class="title-under">
     </div>
     <div class="row">
-      <button class="button" data-open="new-item">Add a new item</button>
-      <button class="button" id="refresh-button">Refresh list</button>
+      <div class="small-12 text-center add-refresh columns">
+        <button class="button" data-open="new-item">Add a new item</button>
+        <button class="button" id="refresh-button">Refresh list</button>
+        <button class="button" id="clear-outfit">Clear new outfit</button>
+      </div>
     </div>
     <div class="row">
-      <div class="small-12 large-10 columns">
+      <div class="small-12 large-9 columns">
         <div id="notes-list">
         </div>
       </div>
-      <div class="small-12 large-2 outfit-panel columns">
-        <h4>New Outfit</h4>
-        <div id="newOutfitList">
+      <div class="small-12 large-3 outfit-panel data-sticky-container columns">
+        <div class="sticky" text-center data-sticky data-anchor="notes-list">
+          <h4>New Outfit</h4>
+          <div id="newOutfitList">
 
+          </div>
         </div>
       </div>
     </div>

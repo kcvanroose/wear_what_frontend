@@ -2,6 +2,12 @@ body {
   font-family: 'Anonymous Pro', monospace;
 }
 
+.dropdown.menu > li.is-dropdown-submenu-parent > a,
+li a {
+  color: black;
+}
+
+
 .top-bar {
   background-color: transparent;
 }
@@ -21,7 +27,7 @@ ul {
     z-index: 1;
     display: none;
     min-width: 200px;
-    border: 1px solid black;
+    border: 1px solid #f2e94e;
     background-color: black;
 }
 
@@ -31,6 +37,10 @@ ul {
   height: 200px;
   width: 200px;
   border-radius: 10px;
+  margin-bottom: .5rem;
+  -webkit-box-shadow: 2px 2px 2px 1px rgba(232,232,232,1);
+  -moz-box-shadow: 2px 2px 2px 1px rgba(232,232,232,1);
+  box-shadow: 2px 2px 2px 1px rgba(232,232,232,1);
 }
 
 .outfit-panel {
@@ -43,13 +53,16 @@ h4 {
   text-decoration: underline;
 }
 
-
-.title-under {
-  border-top: 1px solid #ccc
+h1 {
+  font-size: 2rem;
 }
 
 .button {
   color: black;
   font-weight: bold;
   border-radius: 10px;
+}
+
+.add-refresh {
+  margin-bottom: 3rem;
 }

@@ -8,6 +8,10 @@ const colorMenu = document.querySelector('#colorMenu')
 const brandMenu = document.querySelector('#brandMenu')
 const outfitsMenu = document.querySelector('#outfitsMenu')
 const newOutfitList = document.querySelector('#newOutfitList')
+const addButton = document.querySelector('.addButton')
+const occasionForm = document.querySelector('#occasionForm')
+let itemIds = []
+const clearOutfit = document.querySelector('#clear-outfit')
 
 function getAvailableCategoriesFromItems (items) {
   const categories = items.map(item => item.category)
@@ -66,7 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
       app.addBrandMenu(brandMenu, getAvailableBrandsFromItems(Item.all))
       app.addOutfitsMenu(outfitsMenu, user.outfits)
       app.refreshButton(Item.all)
-      app.selectItem()
+      app.selectItem(itemIds)
+      app.clearOutfitList(clearOutfit)
     });
 
 });
