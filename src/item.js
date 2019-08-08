@@ -10,8 +10,9 @@ class Item {
   }
 
   renderListItem() {
+    
     return `
-      <img id="item-${this.id}" class="image" src="${this.image}">
+      <img id="item-${this.id}" class="image" src="${this.image.url}">
   `;
   }
 }

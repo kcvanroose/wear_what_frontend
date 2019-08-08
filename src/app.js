@@ -173,7 +173,7 @@ class App {
   }
 
   appendItemToOutfit(item) {
-    return `<img id="item-${item.id}" class="image" src="${item.image}">`
+    return `<img id="item-${item.id}" class="image" src="${item.image.url}">`
   }
 
   appendNewButton () {
